@@ -3,6 +3,9 @@
 #include "stdafx.h"
 #include "httpext.h"
 #include "stdio.h"
+#include <string>
+
+using namespace std;
 
 void WriteContext(EXTENSION_CONTROL_BLOCK *pECB, char *pszFormat, ...);
 
@@ -52,11 +55,10 @@ DWORD WINAPI HttpExtensionProc(EXTENSION_CONTROL_BLOCK *pECB)
 	WriteContext(pECB, "<p><b><font face='Verdana' color='#A00000'>Success!</font></b></p>");
 	WriteContext(pECB, "<p><font size='2' face='Verdana'>The uploaded file is now available to the ISAPI extension.</font></p>\r\n", pECB->lpszQueryString);
 
-	const char* ccVerb = pECB->lpszQueryString; // this is the command being executed
+	//const char* ccVerb = pECB->lpszQueryString; // this is the command being executed
 
-	if ( "DoPOC" == ccVerb ) {
-		WriteContext(pECB, "<p><b><font face='Verdana' color='#A00000'>Success!</font></b></p>");
-	    WriteContext(pECB, "<p><font size='2' face='Verdana'>The uploaded file is now available to the ISAPI extension.</font></p>\r\n");
+	if ( "DoPOC" == std::string(pECB->lpszQueryString) ) {
+		//TODO: this needs to be changed to a different verb
 	    WriteContext(pECB, "<p><font size='2' face='Verdana'>The following 'verb' was detected by ISAPI: %s.</font></p>\r\n", pECB->lpszQueryString);
 	}
 
