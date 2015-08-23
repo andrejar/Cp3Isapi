@@ -9,7 +9,15 @@
 
 #define WIN32_LEAN_AND_MEAN		// Exclude rarely-used stuff from Windows headers
 
-#include <windows.h>
+using namespace std;
 
 // TODO: reference additional headers your program requires here
 
+#include <windows.h>
+#include "httpext.h"
+#include "stdio.h"
+#include <string>
+
+ // function prototypes
+
+HRESULT CpLoadMagickLibrary(void);

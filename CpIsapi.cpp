@@ -1,11 +1,7 @@
 
 
 #include "stdafx.h"
-#include "httpext.h"
-#include "stdio.h"
-#include <string>
 
-using namespace std;
 
 void WriteContext(EXTENSION_CONTROL_BLOCK *pECB, char *pszFormat, ...);
 
@@ -60,6 +56,10 @@ DWORD WINAPI HttpExtensionProc(EXTENSION_CONTROL_BLOCK *pECB)
 	if ( "DoPOC" == std::string(pECB->lpszQueryString) ) {
 		//TODO: this needs to be changed to a different verb
 	    WriteContext(pECB, "<p><font size='2' face='Verdana'>The following 'verb' was detected by ISAPI: %s.</font></p>\r\n", pECB->lpszQueryString);
+
+		// good point to load the CpMagickLibrary
+		// TODO: this needs to go to a more appropriate place
+		CpLoadMagickLibrary();
 	}
 
 	EndHeaders(pECB);
